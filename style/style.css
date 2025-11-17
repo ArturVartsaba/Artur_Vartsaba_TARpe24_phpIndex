@@ -1,0 +1,59 @@
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #415861;
+}
+
+ul li {
+    float: left;
+}
+
+ul li a {
+    display: block;
+    color: #ffffff;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+ul li a:hover {
+    background-color: #1b1b1b;
+}
+
+div.flex-container {
+    display: flex;
+    /* Show the flex items horizontally */
+    flex-direction: column;
+}
+
+div.flex-container > div {
+    margin: 10px;
+    border: solid 1pt grey;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+/* Use media query and show the flex items vertically if screen width is less than 600px */
+@media screen and (max-width:600px) {
+    div.flex-container {
+        flex-direction: column;
+    }
+}
+
+header {
+    background-color: #dcdcdc;
+    text-align: center;
+    padding: 10px;
+}
+
+footer {
+    background-color: #dbdbdb;
+    text-align: center;
+    padding: 8px;
+}
+
+body{
+    background: #f3fdfb;
+}

@@ -1,0 +1,11 @@
+git init //uus repo
+
+git config --global user.name "Artur Vartsaba"
+git config --global user.email "arturvartsaba1@gmail.com"
+git config --global --list
+
+//ssh võti loomine
+ssh-keygen -o -t rsa -C "arutvartsaba1@gmail.com"
+
+//võti salvestatakse opilane/.ssh kausta
+//id_rsa.pub tuleb kopeerida oma github -reposse
