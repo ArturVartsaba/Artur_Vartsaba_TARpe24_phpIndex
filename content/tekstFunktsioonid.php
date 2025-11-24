@@ -1,4 +1,11 @@
 <?php
+function clearVarsExcept($url, $varname) {
+    $url=basename($url);
+    if(str_starts_with($url, "?")){
+        return "?$varname=".$_REQUEST[$varname];
+    }
+    return strtok($url, "?")."?$varname=".$_REQUEST[$varname];
+}
 echo "<h2>Tekst funktsioonid</h2>";
 $tekst='Veebirakendus on arvutitarkvara programm';
 echo $tekst; //Näitab muutuja sisu
@@ -58,7 +65,7 @@ echo "Linn lõppeb ".$linn[4]." tähega";
 echo "<br>";
 echo "Linna nimi koosneb kokku ".strlen($linn)." tähest";
 ?>
-<form action="tekstFunktsioonid.php" method="post">
+<form action="<?=clearVarsExcept($_SERVER['REQUEST_URI'], "leht")?>" method="post">
     <label for="linn" id="linn">Sisesta linnanimi</label>
     <input type="tekt" id="linn" name="linn">
     <input type="submit" value="Kontrolli">
