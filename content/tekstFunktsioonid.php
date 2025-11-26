@@ -1,4 +1,11 @@
 <?php
+function clearVarsExcept($url, $varname) {
+    $url=basename($url);
+    if(str_starts_with($url, "?")){
+        return "?$varname=".$_REQUEST[$varname];
+    }
+    return strtok($url, "?")."?$varname=".$_REQUEST[$varname];
+}
 echo "<h2>Tekst funktsioonid</h2>";
 $tekst='Veebirakendus on arvutitarkvara programm';
 echo $tekst; //Näitab muutuja sisu
@@ -51,21 +58,21 @@ $otsi = array("on", "programm");
 $asenda = array("----", "software");
 echo "Otsib sõnad ja asendab neid teiste sõnadega - str_replace()".str_replace($otsi, $asenda, $tekst);
 echo "<h2>MÕISTATUS - ARVA ÄRA EESTI LINNANIMI</h2>"; // viis vihjet
-$linn = "Paide";
-echo "Linn algab ".substr($linn, 0, -4)." tähega";
+$linnanimi = "Paide";
+echo "Linn algab ".substr($linnanimi, 0, -4)." tähega";
 echo "<br>";
-echo "Linn lõppeb ".$linn[4]." tähega";
+echo "Linn lõppeb ".$linnanimi[4]." tähega";
 echo "<br>";
-echo "Linna nimi koosneb kokku ".strlen($linn)." tähest";
+echo "Linna nimi koosneb kokku ".strlen($linnanimi)." tähest";
 ?>
-<form action="tekstFunktsioonid.php" method="post">
+    <form action="<?=clearVarsExcept($_SERVER['REQUEST_URI'], "leht")?>" method="post">
     <label for="linn" id="linn">Sisesta linnanimi</label>
     <input type="tekt" id="linn" name="linn">
     <input type="submit" value="Kontrolli">
 </form>
 <?php
 if(isset($_REQUEST["linn"])){
-    if($_REQUEST["linn"] == "Paide"){
+    if($_REQUEST["linn"] == $linnanimi){
         echo "õige";
     }
     else{
