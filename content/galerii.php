@@ -1,6 +1,7 @@
 <?php
 
 ?>
+<link rel="stylesheet" href="style/image.css">
 <form method="post" action="">
     <select name="image">
         <option value="">Vali pilt</option>
