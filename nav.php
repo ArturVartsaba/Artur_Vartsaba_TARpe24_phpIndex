@@ -9,6 +9,7 @@
                 <li><a href="?leht=matemaatilisedFunktsioonid.php>">Matemaatilised</a></li>
             </ul>
         </li>
+        <li><a href="?leht=galerii.php>">Galerii</a></li>
         <li><a href="https://arturvartsaba24.thkit.ee" target="_blank">Vana koduleht</a></li>
         <li><a href="?leht=gitKasud.php">GIT käsud</a></li>
     </ul>
