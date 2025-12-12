@@ -1,38 +1,38 @@
 <?php
- require('config.php');
+require('config.php');
 global $yhendus;
 
-  // Uue teate lisamine
-  if (isset($_REQUEST["uusleht"])) {
+// Uue teate lisamine
+if (isset($_REQUEST["uusleht"])) {
     $kask = $yhendus->prepare("INSERT INTO lehed (pealkiri, sisu, kuupaev, autor, pilt) VALUES (?, ?, ?, ?, ?)");
     $kask->bind_param("ssdss", $_REQUEST["pealkiri"], $_REQUEST["sisu"], $_REQUEST["kuupaev"], $_REQUEST["autor"], $_REQUEST["pilt"]);
     $kask->execute();
     header("Location: ".$_SERVER["PHP_SELF"]);
     $yhendus->close();
     exit();
-  }
+}
 
-  // Teate kustutamine
-  if (isset($_REQUEST["kustutusid"])) {
+// Teate kustutamine
+if (isset($_REQUEST["kustutusid"])) {
     $kask = $yhendus->prepare("DELETE FROM lehed WHERE id=?");
     $kask->bind_param("i", $_REQUEST["kustutusid"]);
     $kask->execute();
-  }
+}
 
-  // Teate muutmine
-  if (isset($_REQUEST["muutmisid"])) {
+// Teate muutmine
+if (isset($_REQUEST["muutmisid"])) {
     $kask = $yhendus->prepare("UPDATE lehed SET pealkiri=?, sisu=?, kuupaev=?, autor=?, pilt=? WHERE id=?");
     $kask->bind_param(
-      "ssdssi",
-      $_REQUEST["pealkiri"],
-      $_REQUEST["sisu"],
-      $_REQUEST["kuupaev"],
-      $_REQUEST["autor"],
-      $_REQUEST["pilt"],
-      $_REQUEST["muutmisid"]
+        "ssdssi",
+        $_REQUEST["pealkiri"],
+        $_REQUEST["sisu"],
+        $_REQUEST["kuupaev"],
+        $_REQUEST["autor"],
+        $_REQUEST["pilt"],
+        $_REQUEST["muutmisid"]
     );
     $kask->execute();
-  }
+}
 ?>
 <!DOCTYPE html>
 <html lang="et">

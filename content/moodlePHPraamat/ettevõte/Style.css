@@ -4,7 +4,11 @@ header{
 }
 
 footer{
+    position: fixed;
     text-align: center;
+    width: 100%;
+    left: 0;
+    bottom: 0;
     padding: 8px;
 }
 
