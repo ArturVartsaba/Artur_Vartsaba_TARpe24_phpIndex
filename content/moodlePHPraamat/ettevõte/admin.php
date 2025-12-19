@@ -51,12 +51,35 @@ include("nav.php");
     <ul>
         <?php
         $kask = $yhendus->prepare(
-            "SELECT id, pealkiri FROM toode"
+            "SELECT id, nimi FROM toode"
         );
-        $kask->bind_result("sis", $_REQUEST["kustutasid"]);
+        $kask->bind_result($id, $nimi);
+        $kask->execute();
+        while ($kask->fetch()) {
+            echo "<li class='noStyle'><a class='noStyle".$_SERVER["PHP_SELF"].
+                "?id=$id'>".htmlspecialchars($nimi)."</a></li>";
+        }
         ?>
     </ul>
     <a href="<?=$_SERVER['PHP_SELF']?>?lisamine=jah">Lisa ...</a>
+</div>
+
+<div id="sisukiht">
+    <?php
+    // Ühe toode kuvamine või muutmine
+    if (isset($_REQUEST["id"])){
+        $kask = $yhendus->prepare("SELECT id, nimi, hind, pilt FROM toode WHERE id=?");
+        $kask->bind_param("i", $_REQUEST["id"]);
+        $kask->bind_result($id, $nimi, $hind, $pilt);
+        $kask->execute();
+
+        if ($kask->fetch()) {
+            if (isset($_REQUEST["muutmine"])) {
+
+            }
+        }
+    }
+    ?>
 </div>
 
 <?php
@@ -64,3 +87,6 @@ include("footer.php");
 ?>
 </body>
 </html>
+<?php
+$yhendus->close();
+?>
